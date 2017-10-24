@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGCD", "AlgorithmGC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGCD.Tests", "AlgorithmGCD.Tests\AlgorithmGCD.Tests.csproj", "{CD4749B6-631A-45AC-B3AE-E22BDCA2115C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter", "Converter\Converter.csproj", "{18D69C6F-14A9-4956-9122-2A3C95A537B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter.Tests", "Converter.Tests\Converter.Tests.csproj", "{A56126DA-5CF6-4478-8334-A50F7D54D65A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{CD4749B6-631A-45AC-B3AE-E22BDCA2115C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD4749B6-631A-45AC-B3AE-E22BDCA2115C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD4749B6-631A-45AC-B3AE-E22BDCA2115C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D69C6F-14A9-4956-9122-2A3C95A537B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D69C6F-14A9-4956-9122-2A3C95A537B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D69C6F-14A9-4956-9122-2A3C95A537B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D69C6F-14A9-4956-9122-2A3C95A537B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56126DA-5CF6-4478-8334-A50F7D54D65A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56126DA-5CF6-4478-8334-A50F7D54D65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56126DA-5CF6-4478-8334-A50F7D54D65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56126DA-5CF6-4478-8334-A50F7D54D65A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
