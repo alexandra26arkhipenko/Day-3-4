@@ -10,6 +10,25 @@ namespace AlgorithmGCD
 {
     public class AlgorithmGCD
     {
+        private static int NodLoop(int firstn, int secnum)
+        {
+            while (firstn != secnum)
+            {
+                if (firstn > secnum)
+                {
+                    firstn = firstn - secnum;
+                    
+                }
+                else
+                {
+                    secnum = secnum - firstn;
+                   
+                }
+            }
+            return firstn;
+        }
+
+
         /// <summary>
         /// Метод EuclideanMethod принимает 2 целочисленных параметра 
         /// и возвращает НОД этих чисел, используя классический алгоритм Евклида
@@ -22,23 +41,15 @@ namespace AlgorithmGCD
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+
             int firstNumberAbs = Math.Abs(firstNumber);
             int secondNumberAbs = Math.Abs(secondNumber);
-            while (firstNumberAbs != secondNumberAbs)
-            {
-                if (firstNumberAbs > secondNumberAbs)
-                {
-                    firstNumberAbs = firstNumberAbs - secondNumberAbs;
-                }
-                else
-                {
-                    secondNumberAbs = secondNumberAbs - firstNumberAbs;
-                }
-            }
-            stopwatch.Stop();
 
+            int result = NodLoop(firstNumberAbs, secondNumberAbs);
+
+            stopwatch.Stop();
             double time = stopwatch.Elapsed.TotalMilliseconds;
-            return Tuple.Create(firstNumberAbs, time);
+            return Tuple.Create(result, time);
 
         }
         #endregion
@@ -56,32 +67,15 @@ namespace AlgorithmGCD
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+
             int firstNumberAbs = Math.Abs(firstNumber);
             int secondNumberAbs = Math.Abs(secondNumber);
             int thirdNumberAbs = Math.Abs(thirdNumber);
-            while (firstNumberAbs != secondNumberAbs)
-            {
-                if (firstNumberAbs > secondNumberAbs)
-                {
-                    firstNumberAbs = firstNumberAbs - secondNumberAbs;
-                }
-                else
-                {
-                    secondNumberAbs = secondNumberAbs - firstNumberAbs;
-                }
-            }
-            while (firstNumberAbs != thirdNumberAbs)
-            {
-                if (firstNumberAbs > thirdNumberAbs)
-                {
-                    firstNumberAbs = firstNumberAbs - thirdNumberAbs;
-                }
-                else
-                {
-                    thirdNumberAbs = thirdNumberAbs - firstNumberAbs;
-                }
-            }
+
+            firstNumberAbs = NodLoop(firstNumberAbs, secondNumberAbs);
+            firstNumberAbs = NodLoop(firstNumberAbs, thirdNumberAbs);
             stopwatch.Stop();
+
             double time = stopwatch.Elapsed.TotalMilliseconds;
             return Tuple.Create(firstNumberAbs, time);
         }
@@ -99,29 +93,22 @@ namespace AlgorithmGCD
             {
                 throw new ArgumentException();
             }
-
             if (numbers == null)
             {
                 throw new ArgumentException();
             }
+
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
+
             for (int i = 1; i < numbers.Length; i++)
             {
-                while (Math.Abs(numbers[0]) != Math.Abs(numbers[i]))
-                {
-                    if (Math.Abs(numbers[0]) > Math.Abs(numbers[i]))
-                    {
-                        numbers[0] = Math.Abs(numbers[0]) - Math.Abs(numbers[i]);
-                    }
-                    else
-                    {
-                        numbers[i] = Math.Abs(numbers[i]) - Math.Abs(numbers[0]);
-                    }
-                }
+                numbers[0] = NodLoop(Math.Abs(numbers[0]), Math.Abs(numbers[i]));
             }
+
             stopwatch.Stop();
             double time = stopwatch.Elapsed.TotalMilliseconds;
+
             return Tuple.Create(numbers[0], time);
         }
         #endregion
@@ -176,8 +163,9 @@ namespace AlgorithmGCD
                 secondNumberAbs = secondNumberAbs - firstNumberAbs;
             } while (secondNumberAbs != 0);
             stopwatch.Stop();
+            int k = firstNumber << shift;
             double time = stopwatch.Elapsed.TotalMilliseconds;
-            return Tuple.Create(firstNumber << shift, time);
+            return Tuple.Create(k, time);
         }
         #endregion
 

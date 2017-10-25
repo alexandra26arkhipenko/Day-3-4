@@ -3,20 +3,28 @@ using System.Text;
 
 namespace Converter
 {
+    /// <summary>
+    /// Статический класс Converter,  котором реализуется расширяющий метод DoubleHelper
+    /// </summary>
     public static class Converter
     {
-        public static string DoubleHelper(this double f)
+       /// <summary>
+       /// Статический расширяющий метод DoubleHelper. Расширяет тип Double
+       /// </summary>
+       /// <param name="doubleNumber"></param>
+       /// <returns></returns>
+        public static string DoubleHelper(this double doubleNumber)
         {
             StringBuilder sb = new StringBuilder();
-            Byte[] ba = BitConverter.GetBytes(f);
-            foreach (Byte b in ba)
+            Byte[] doubleByte = BitConverter.GetBytes(doubleNumber);
+            foreach (Byte b in doubleByte)
                 for (int i = 0; i < 8; i++)
                 {
                     sb.Insert(0, ((b >> i) & 1) == 1 ? "1" : "0");
                 }
-            string s = sb.ToString();
+            string doubleToString = sb.ToString();
            
-            return s;
+            return doubleToString;
         }
     }
 
