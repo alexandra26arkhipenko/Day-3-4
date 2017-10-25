@@ -10,10 +10,10 @@ namespace AlgorithmGCD.Tests
         [TestMethod]
         public void EuclideanMethod_DifParam_GCD()
         {
-           // Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24).Item1, 8);
-            //Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, -24).Item1, 8);
-            //Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 0).Item1, 40);
-           // Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24, 32).Item1, 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24).Item1, 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, -24).Item1, 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 0).Item1, 40);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24, 32).Item1, 8);
             Assert.AreEqual(AlgorithmGCD.EuclideanMethod(50, 25, 10, 95, -100).Item1, 5);
         }
 
