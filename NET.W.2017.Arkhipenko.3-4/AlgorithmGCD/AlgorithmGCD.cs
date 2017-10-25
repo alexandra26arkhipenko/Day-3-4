@@ -113,6 +113,32 @@ namespace AlgorithmGCD
         }
         #endregion
 
+        private static int BinNodLoop(int firstNum, int secondNum)
+        {
+            int shift;
+            for (shift = 0; ((firstNum | secondNum) & 1) == 0; ++shift)
+            {
+                firstNum >>= 1;
+                secondNum >>= 1;
+            }
+            while ((firstNum & 1) == 0)
+                firstNum >>= 1;
+            do
+            {
+                while ((secondNum & 1) == 0)
+                    secondNum >>= 1;
+                if (firstNum > secondNum)
+                {
+                    int t = secondNum;
+                    secondNum = firstNum;
+                    firstNum = t;
+                }
+                secondNum = secondNum - firstNum;
+            } while (secondNum != 0);
+            return firstNum << shift;
+        }
+
+
         /// <summary>
         /// Метод BinEuclideanMethod принимает 2 целочисленных параметра 
         /// и возвращает НОД этих чисел, используя алгоритм Стейна(бинарный алгоритм Евклида)
@@ -130,45 +156,15 @@ namespace AlgorithmGCD
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            int shift;
-            if (firstNumber == 0)
-            {
-                stopwatch.Stop();
-                double times = stopwatch.Elapsed.TotalMilliseconds;
-                return Tuple.Create(secondNumber, times);
-            }
-            if (secondNumber == 0)
-            {
-                stopwatch.Stop();
-                double times = stopwatch.Elapsed.TotalMilliseconds;
-                return Tuple.Create(firstNumber, times);
-            }
-            for (shift = 0; ((firstNumberAbs | secondNumberAbs) & 1) == 0; ++shift)
-            {
-                firstNumberAbs >>= 1;
-                secondNumberAbs >>= 1;
-            }
-            while ((firstNumberAbs & 1) == 0)
-                firstNumberAbs >>= 1;
-            do
-            {
-                while ((secondNumberAbs & 1) == 0)
-                    secondNumberAbs >>= 1;
-                if (firstNumberAbs > secondNumberAbs)
-                {
-                    int t = secondNumberAbs;
-                    secondNumberAbs = firstNumberAbs;
-                    firstNumberAbs = t;
-                }
-                secondNumberAbs = secondNumberAbs - firstNumberAbs;
-            } while (secondNumberAbs != 0);
+            int k = BinNodLoop(firstNumberAbs, secondNumberAbs);
             stopwatch.Stop();
-            int k = firstNumber << shift;
+            
             double time = stopwatch.Elapsed.TotalMilliseconds;
             return Tuple.Create(k, time);
         }
         #endregion
 
+        
 
         /// <summary>
         /// Метод BinEuclideanMethod принимает 3 целочисленных параметра 
@@ -208,50 +204,12 @@ namespace AlgorithmGCD
                 return Tuple.Create(thirdNumber, times);
             }
 
-            for (shift = 0; ((firstNumberAbs | secondNumberAbs) & 1) == 0; ++shift)
-            {
-                firstNumberAbs >>= 1;
-                secondNumberAbs >>= 1;
-            }
-            while ((firstNumberAbs & 1) == 0)
-                firstNumberAbs >>= 1;
-            do
-            {
-                while ((secondNumberAbs & 1) == 0)
-                    secondNumberAbs >>= 1;
-                if (firstNumberAbs > secondNumberAbs)
-                {
-                    int t = secondNumberAbs;
-                    secondNumberAbs = firstNumber;
-                    firstNumberAbs = t;
-                }
-                secondNumberAbs = secondNumberAbs - firstNumberAbs;
-            } while (secondNumberAbs != 0);
-            int k = firstNumberAbs << shift;
-
-            int shift1;
-            for (shift1 = 0; ((k | thirdNumberAbs) & 1) == 0; ++shift1)
-            {
-                k >>= 1;
-                thirdNumberAbs >>= 1;
-            }
-            while ((k & 1) == 0)
-                k >>= 1;
-            do
-            {
-                while ((thirdNumberAbs & 1) == 0)
-                    thirdNumberAbs >>= 1;
-                if (k > thirdNumberAbs)
-                {
-                    int t = thirdNumberAbs;
-                    thirdNumberAbs = k;
-                    k = t;
-                }
-                thirdNumberAbs = thirdNumberAbs - k;
-            } while (thirdNumberAbs != 0);
+            int k = BinNodLoop(firstNumberAbs, secondNumberAbs);
+            k = BinNodLoop(k, thirdNumberAbs);
+            
             stopwatch.Stop();
             double time = stopwatch.Elapsed.TotalMilliseconds;
-            return Tuple.Create(k << shift1, time);
+            return Tuple.Create(k, time);
         }
         #endregion
 
@@ -290,26 +248,7 @@ namespace AlgorithmGCD
                     double times = stopwatch.Elapsed.TotalMilliseconds;
                     return Tuple.Create(numbers[i+1], times);
                 }
-                for (shift = 0; ((Math.Abs(numbers[i]) | Math.Abs(numbers[i+1])) & 1) == 0; ++shift)
-                {
-                    numbers[i] >>= 1;
-                    numbers[i+1] >>= 1;
-                }
-                while ((Math.Abs(numbers[i]) & 1) == 0)
-                    numbers[i]>>= 1;
-                do
-                {
-                    while ((numbers[i+1] & 1) == 0)
-                        numbers[i + 1] >>= 1;
-                    if (Math.Abs(numbers[i]) > numbers[i + 1])
-                    {
-                        int t = numbers[i + 1];
-                        numbers[i + 1] = numbers[i];
-                        numbers[i] = t;
-                    }
-                    numbers[i + 1] = numbers[i + 1] - numbers[i];
-                } while (numbers[i + 1] != 0);
-                numbers[i+1] = numbers[i] << shift;
+                numbers[i + 1] = BinNodLoop(numbers[i], numbers[i + 1]);
             }
             stopwatch.Stop();
             double time = stopwatch.Elapsed.TotalMilliseconds;
