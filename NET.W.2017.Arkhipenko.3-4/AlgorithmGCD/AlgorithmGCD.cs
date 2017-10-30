@@ -4,39 +4,22 @@ using System.Diagnostics;
 
 
 /// <summary>
-/// Класс AlgorithmGCD считает НОД при помощи алгоритма Евклида и алгоритма Стейна(бинарный алгоритм Евклида
+///The AlgorithmGCD class considers the GCD using the Euclidean algorithm and the Stein algorithm (Euclid's binary algorithm)
 /// </summary>
 namespace AlgorithmGCD
 {
     public class AlgorithmGCD
     {
-        private static int NodLoop(int firstn, int secnum)
-        {
-            while (firstn != secnum)
-            {
-                if (firstn > secnum)
-                {
-                    firstn = firstn - secnum;
-                    
-                }
-                else
-                {
-                    secnum = secnum - firstn;
-                   
-                }
-            }
-            return firstn;
-        }
-
+        #region public
 
         /// <summary>
-        /// Метод EuclideanMethod принимает 2 целочисленных параметра 
-        /// и возвращает НОД этих чисел, используя классический алгоритм Евклида
+        /// The EuclideanMethod method takes 2 integer parameters 
+        /// and returns the GCD of these numbers using the classical Euclidean algorithm
         /// </summary>
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
-        /// <returns></returns>
-        #region Euclidean algorithm with two parameters;
+        /// <returns> GCD of two numbers(int) and time necessary for calculations(double)</returns>
+
         public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -52,17 +35,17 @@ namespace AlgorithmGCD
             return Tuple.Create(result, time);
 
         }
-        #endregion
+
 
         /// <summary>
-        /// Метод EuclideanMethod принимает 3 целочисленных параметра
-        ///  и возвращает НОД этих чисел, используя классический алгоритм Евклида
+        /// The EuclideanMethod method takes 3 integer parameters 
+        /// and returns the GCD of these numbers using the classical Euclidean algorithm
         /// </summary>
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
         /// <param name="thirdNumber"></param>
-        /// <returns></returns>
-        #region Euclidean algorithm with three parameters;
+        /// <returns>GCD of two numbers(int) and time necessary for calculations(double)</returns>
+
         public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber, int thirdNumber)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -95,7 +78,7 @@ namespace AlgorithmGCD
             }
             if (numbers == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentNullException();
             }
 
             Stopwatch stopwatch = new Stopwatch();
@@ -257,7 +240,23 @@ namespace AlgorithmGCD
         #endregion
 
 
+        private static int NodLoop(int firstn, int secnum)
+        {
+            while (firstn != secnum)
+            {
+                if (firstn > secnum)
+                {
+                    firstn = firstn - secnum;
 
+                }
+                else
+                {
+                    secnum = secnum - firstn;
+
+                }
+            }
+            return firstn;
+        }
 
 
     }
