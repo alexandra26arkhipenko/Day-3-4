@@ -3,15 +3,16 @@ using System;
 using System.Diagnostics;
 
 
-/// <summary>
-///The AlgorithmGCD class considers the GCD using the Euclidean algorithm and the Stein algorithm (Euclid's binary algorithm)
-/// </summary>
 namespace AlgorithmGCD
 {
+    /// <summary>
+    ///The AlgorithmGCD class considers the GCD using the Euclidean algorithm and the Stein algorithm (Euclid's binary algorithm)
+    /// </summary>
     public class AlgorithmGCD
     {
         #region public
 
+        #region EuclideanMethod method
         /// <summary>
         /// The EuclideanMethod method takes 2 integer parameters 
         /// and returns the GCD of these numbers using the classical Euclidean algorithm
@@ -19,7 +20,6 @@ namespace AlgorithmGCD
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
         /// <returns> GCD of two numbers(int) and time necessary for calculations(double)</returns>
-
         public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -36,7 +36,6 @@ namespace AlgorithmGCD
 
         }
 
-
         /// <summary>
         /// The EuclideanMethod method takes 3 integer parameters 
         /// and returns the GCD of these numbers using the classical Euclidean algorithm
@@ -44,8 +43,7 @@ namespace AlgorithmGCD
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
         /// <param name="thirdNumber"></param>
-        /// <returns>GCD of two numbers(int) and time necessary for calculations(double)</returns>
-
+        /// <returns>GCD of three numbers(int) and time necessary for calculations(double)</returns>
         public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber, int thirdNumber)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -62,14 +60,13 @@ namespace AlgorithmGCD
             double time = stopwatch.Elapsed.TotalMilliseconds;
             return Tuple.Create(firstNumberAbs, time);
         }
-        #endregion
 
         /// <summary>
-        /// Метод EuclideanMethod принимает массив из целых чисел
-        ///  и возвращает НОД этих чисел, используя классический алгоритм Евклида        /// </summary>
+        /// The EuclideanMethod method takes integer array 
+        /// and returns the GCD of these numbers using the classical Euclidean algorithm      
+        /// /// </summary>
         /// <param name="numbers"></param>
-        /// <returns></returns>
-        #region Euclidean algorithm with several parameters;
+        /// <returns>GCD of integer array numbers(int) and time necessary for calculations(double)</returns>
         public static Tuple<int, double> EuclideanMethod(params int[] numbers)
         {
             if (numbers.Length == 0)
@@ -86,7 +83,7 @@ namespace AlgorithmGCD
 
             for (int i = 1; i < numbers.Length; i++)
             {
-                numbers[0] = NodLoop(Math.Abs(numbers[0]), Math.Abs(numbers[i]));
+                numbers[0] = NodLoop(numbers[0], numbers[i]);
             }
 
             stopwatch.Stop();
@@ -96,40 +93,15 @@ namespace AlgorithmGCD
         }
         #endregion
 
-        private static int BinNodLoop(int firstNum, int secondNum)
-        {
-            int shift;
-            for (shift = 0; ((firstNum | secondNum) & 1) == 0; ++shift)
-            {
-                firstNum >>= 1;
-                secondNum >>= 1;
-            }
-            while ((firstNum & 1) == 0)
-                firstNum >>= 1;
-            do
-            {
-                while ((secondNum & 1) == 0)
-                    secondNum >>= 1;
-                if (firstNum > secondNum)
-                {
-                    int t = secondNum;
-                    secondNum = firstNum;
-                    firstNum = t;
-                }
-                secondNum = secondNum - firstNum;
-            } while (secondNum != 0);
-            return firstNum << shift;
-        }
 
 
         /// <summary>
-        /// Метод BinEuclideanMethod принимает 2 целочисленных параметра 
-        /// и возвращает НОД этих чисел, используя алгоритм Стейна(бинарный алгоритм Евклида)
+        /// The BinEuclideanMethod method takes 2 integer parameters 
+        /// and returns the NOD of these numbers using the Stein algorithm (Euclid's binary algorithm)
         /// </summary>
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
-        /// <returns></returns>
-        #region Binary euclidean algorithm with two parameters;
+        /// <returns>GCD of two numbers(int) and time necessary for calculations(double)</returns>
         public static Tuple<int , double> BinEuclideanMethod(int firstNumber, int secondNumber)
         {
             int firstNumberAbs = Math.Abs(firstNumber);
@@ -145,19 +117,15 @@ namespace AlgorithmGCD
             double time = stopwatch.Elapsed.TotalMilliseconds;
             return Tuple.Create(k, time);
         }
-        #endregion
-
-        
 
         /// <summary>
-        /// Метод BinEuclideanMethod принимает 3 целочисленных параметра 
-        /// и возвращает НОД этих чисел, используя алгоритм Стейна(бинарный алгоритм Евклида)
+        ///  The BinEuclideanMethod method takes 3 integer parameters 
+        /// and returns the NOD of these numbers using the Stein algorithm (Euclid's binary algorithm)
         /// </summary>
         /// <param name="firstNumber"></param>
         /// <param name="secondNumber"></param>
         /// <param name="thirdNumber"></param>
-        /// <returns></returns>
-        #region Binary Euclidean algorithm with three parameters;
+        /// <returns>GCD of three numbers(int) and time necessary for calculations(double)</returns>
         public static Tuple<int,double> BinEuclideanMethod(int firstNumber, int secondNumber, int thirdNumber)
         {
             int firstNumberAbs = Math.Abs(firstNumber);
@@ -166,7 +134,6 @@ namespace AlgorithmGCD
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            int shift;
 
             if (firstNumber == 0)
             {
@@ -194,15 +161,13 @@ namespace AlgorithmGCD
             double time = stopwatch.Elapsed.TotalMilliseconds;
             return Tuple.Create(k, time);
         }
-        #endregion
 
         /// <summary>
-        /// Метод BinEuclideanMethod принимает массив, состоящий из целых чисел , 
-        /// и возвращает НОД этих чисел, используя алгоритм Стейна(бинарный алгоритм Евклида)
+        /// The BinEuclideanMethod method takes integer array
+        /// and returns the NOD of these numbers using the Stein algorithm (Euclid's binary algorithm)
         /// </summary>
         /// <param name="numbers"></param>
-        /// <returns></returns>
-        #region Binary Euclidean algorithm with several parameters;
+        /// <returns>GCD of integer array(int) and time necessary for calculations(double)</returns>
         public static Tuple<int,double> BinEuclideanMethod(params int[] numbers)
         {
             if (numbers.Length == 0)
@@ -239,7 +204,7 @@ namespace AlgorithmGCD
         }
         #endregion
 
-
+        #region private
         private static int NodLoop(int firstn, int secnum)
         {
             while (firstn != secnum)
@@ -259,5 +224,30 @@ namespace AlgorithmGCD
         }
 
 
+        private static int BinNodLoop(int firstNum, int secondNum)
+        {
+            int shift;
+            for (shift = 0; ((firstNum | secondNum) & 1) == 0; ++shift)
+            {
+                firstNum >>= 1;
+                secondNum >>= 1;
+            }
+            while ((firstNum & 1) == 0)
+                firstNum >>= 1;
+            do
+            {
+                while ((secondNum & 1) == 0)
+                    secondNum >>= 1;
+                if (firstNum > secondNum)
+                {
+                    int t = secondNum;
+                    secondNum = firstNum;
+                    firstNum = t;
+                }
+                secondNum = secondNum - firstNum;
+            } while (secondNum != 0);
+            return firstNum << shift;
+        }
+        #endregion
     }
 }

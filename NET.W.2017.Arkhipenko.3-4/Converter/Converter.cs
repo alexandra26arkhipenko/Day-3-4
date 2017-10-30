@@ -4,15 +4,15 @@ using System.Text;
 namespace Converter
 {
     /// <summary>
-    /// Статический класс Converter,  котором реализуется расширяющий метод DoubleHelper
+    /// static class Converter that implements the DoubleHelper extension method
     /// </summary>
     public static class Converter
     {
        /// <summary>
-       /// Статический расширяющий метод DoubleHelper. Расширяет тип Double
+       /// static extention method DoubleHelper for Double
        /// </summary>
        /// <param name="doubleNumber"></param>
-       /// <returns></returns>
+       /// <returns>double to string</returns>
         public static string DoubleHelper(this double doubleNumber)
         {
             StringBuilder sb = new StringBuilder();
