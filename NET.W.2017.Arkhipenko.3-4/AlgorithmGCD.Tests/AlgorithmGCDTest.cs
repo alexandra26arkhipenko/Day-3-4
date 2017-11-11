@@ -8,13 +8,17 @@ namespace AlgorithmGCD.Tests
     public class AlgorithmGCDTest
     {
         [TestMethod]
-        public void EuclideanMethod_DifParam_GCD()
+        public void EuclideanMethod_DifParam_GCD_WithoutTime()
         {
-            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24).Item1, 8);
-            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, -24).Item1, 8);
-            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 0).Item1, 40);
-            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24, 32).Item1, 8);
-            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(50, 25, 10, 95, -100).Item1, 5);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24), 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, -24), 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 0), 40);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24, 32), 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, -24, 32), 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(40, 24, 0), 8);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(50, 25, 10, 95, -100), 5);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(50, 25, 10, 95, 100), 5);
+            Assert.AreEqual(AlgorithmGCD.EuclideanMethod(50, 25, 10, 0, -100), 5);
         }
 
         [TestMethod]
@@ -28,22 +32,19 @@ namespace AlgorithmGCD.Tests
         public void BinEuclideanMethod_DifParam_GCD()
         {
             
-            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 0).Item1, 40);
-            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 24, 32).Item1, 8);
-            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, -24, 32).Item1, 8);
-            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(50, 25, 10, 95, 100).Item1, 5);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 0), 40);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 2), 2);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, -2), 2);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 24, 32), 8);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 24, 0), 8);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 24, -8), 8);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(40, 24, 32), 8);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(50, 25, 10, 95, 100), 5);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(50, 25, 10, 95, -100), 5);
+            Assert.AreEqual(AlgorithmGCD.BinEuclideanMethod(50, 25, 10, 0, 100), 5);
         }
 
-        [TestMethod]
-        public void TimeControler_EuclideanMethod()
-        {
-            Assert.IsFalse(AlgorithmGCD.EuclideanMethod(24, 48).Item2 < 0);
-        }
-        [TestMethod]
-        public void TimeControler_BinEuclideanMethod()
-        {
-            Assert.IsFalse(AlgorithmGCD.BinEuclideanMethod(24,48).Item2 < 0);
-        }
+       
 
 
 
