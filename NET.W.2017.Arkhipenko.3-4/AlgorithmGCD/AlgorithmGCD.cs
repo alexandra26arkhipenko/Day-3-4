@@ -23,10 +23,9 @@ namespace AlgorithmGCD
         /// <returns> GCD of two numbers(int) and time necessary for calculations(double)</returns>
         public static int EuclideanMethod(int firstNumber, int secondNumber) => 
             EuclideanGcd(Math.Abs(firstNumber), Math.Abs(secondNumber)); 
-        public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber, out double time) =>
+        public static int EuclideanMethod(int firstNumber, int secondNumber, out double time) =>
             CalculateTime(() => EuclideanMethod(firstNumber, secondNumber), out time);
-        
-        
+              
         /// <summary>
         /// The EuclideanMethod method takes 3 integer parameters 
         /// and returns the GCD of these numbers using the classical Euclidean algorithm
@@ -36,12 +35,10 @@ namespace AlgorithmGCD
         /// <param name="thirdNumber"></param>
         /// <returns>GCD of three numbers(int) and time necessary for calculations(double)</returns>
         public static int EuclideanMethod(int firstNumber, int secondNumber, int thirdNumber) =>
-            EuclideanGcd(EuclideanGcd(Math.Abs(firstNumber), Math.Abs(secondNumber)), Math.Abs(thirdNumber));
-        
-        public static Tuple<int, double> EuclideanMethod(int firstNumber, int secondNumber, int thirdNumber, out double time) =>
+            EuclideanGcd(EuclideanGcd(Math.Abs(firstNumber), Math.Abs(secondNumber)), Math.Abs(thirdNumber));        
+        public static int EuclideanMethod(int firstNumber, int secondNumber, int thirdNumber, out double time) =>
             CalculateTime(() => EuclideanMethod(firstNumber, secondNumber, thirdNumber), out time);
         
-
         /// <summary>
         /// The EuclideanMethod method takes integer array 
         /// and returns the GCD of these numbers using the classical Euclidean algorithm      
@@ -70,7 +67,7 @@ namespace AlgorithmGCD
             }
             return numbers[0];
         }
-        public static Tuple<int, double> EuclideanMethod( out double time, params int[] numbers) =>
+        public static int EuclideanMethod( out double time, params int[] numbers) =>
              CalculateTime(() => EuclideanMethod(numbers), out time);
         #endregion
 
@@ -85,7 +82,7 @@ namespace AlgorithmGCD
         /// <returns>GCD of two numbers(int) and time necessary for calculations(double)</returns>
         public static int BinEuclideanMethod(int firstNumber, int secondNumber) =>
             SteinGcd(Math.Abs(firstNumber), Math.Abs(secondNumber));
-        public static Tuple<int, double> BinEuclideanMethod(int firstNumber, int secondNumber, out double time) =>
+        public static int BinEuclideanMethod(int firstNumber, int secondNumber, out double time) =>
             CalculateTime(() => BinEuclideanMethod(firstNumber, secondNumber), out time);
        
         /// <summary>
@@ -98,7 +95,7 @@ namespace AlgorithmGCD
         /// <returns>GCD of three numbers(int) and time necessary for calculations(double)</returns>
         public static int BinEuclideanMethod(int firstNumber, int secondNumber, int thirdNumber)=>
             SteinGcd(SteinGcd(firstNumber, secondNumber), thirdNumber);
-        public static Tuple<int, double> BinEuclideanMethod(int firstNumber, int secondNumber, int thirdNumber, out double time)=>
+        public static int  BinEuclideanMethod(int firstNumber, int secondNumber, int thirdNumber, out double time)=>
             CalculateTime(() => BinEuclideanMethod(firstNumber, secondNumber, thirdNumber), out time);              
 
         /// <summary>
@@ -131,7 +128,7 @@ namespace AlgorithmGCD
             return numbers[numbers.Length - 1];
 
         }
-        public static Tuple<int, double> BinEuclideanMethod( out double time, params int[] numbers)=>
+        public static int  BinEuclideanMethod( out double time, params int[] numbers)=>
             CalculateTime(() => BinEuclideanMethod(numbers), out time);
 
 #endregion
@@ -180,7 +177,7 @@ namespace AlgorithmGCD
             } while (secondNum != 0);
             return firstNum << shift;
         }
-        private static Tuple<int, double> CalculateTime(Func<int> calculateGcd, out double time)
+        private static int CalculateTime(Func<int> calculateGcd,  out double time)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -190,7 +187,7 @@ namespace AlgorithmGCD
             stopwatch.Stop();
             time = stopwatch.Elapsed.TotalMilliseconds;
 
-            return Tuple.Create(result, time);
+            return result;
 
         }
         #endregion
